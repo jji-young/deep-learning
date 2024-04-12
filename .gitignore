@@ -127,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.deep-learning
 
 # Spyder project settings
 .spyderproject
