@@ -12,11 +12,33 @@ class LeNet5(nn.Module):
 
     def __init__(self):
 
-        # write your codes here
+        super(LeNet5, self).__init__()
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1) # (5*5*1+1)*6 = 153
+        self.relu1 = nn.ReLU()
+        self.pool1 = nn.MaxPool2d(kernel_size=2)
+        self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1) # (5 * 5 * 6 + 1) * 16 = 2,416
+        self.relu2 = nn.ReLU()
+        self.pool2 = nn.MaxPool2d(kernel_size=2)
+        self.fc1 = nn.Linear(16 * 5 * 5, 120) # (400 + 1) * 120 = 48,120
+        self.relu3 = nn.ReLU()
+        self.fc2 = nn.Linear(120, 84) # (120 + 1) * 84 = 10,164
+        self.relu4 = nn.ReLU()
+        self.fc3 = nn.Linear(84, 10) # (84 + 1) * 10 = 850
 
     def forward(self, img):
 
-        # write your codes here
+        x = self.conv1(img)
+        x = self.relu1(x)
+        x = self.pool1(x)
+        x = self.conv2(x)
+        x = self.relu2(x)
+        x = self.pool2(x)
+        x = x.view(x.size(0), -1) # convolution layer와 full connected layer 연결
+        x = self.fc1(x)
+        x = self.relu3(x)
+        x = self.fc2(x)
+        x = self.relu4(x)
+        output = self.fc3(x)
 
         return output
 
@@ -30,10 +52,21 @@ class CustomMLP(nn.Module):
 
     def __init__(self):
 
-        # write your codes here
+        super(CustomMLP, self).__init__()
+        self.fc1 = nn.Linear(32 * 32, 58)
+        self.relu1 = nn.ReLU()
+        self.fc2 = nn.Linear(58, 29)
+        self.relu2 = nn.ReLU()
+        self.fc3 = nn.Linear(29, 10)  
+
 
     def forward(self, img):
-
-        # write your codes here
+        x = img.view(img.size(0), -1)  
+        
+        x = self.fc1(x)
+        x = self.relu1(x)
+        x = self.fc2(x)
+        x = self.relu2(x)
+        output = self.fc3(x)
 
         return output
