@@ -99,10 +99,10 @@ def main():
     epochs = 30
 
     for epoch in range(epochs):
-    trn_loss, acc = train(model, trn_loader, device, criterion, optimizer)
-    print(f'Epoch {epoch+1}/{epochs} - Training Loss: {trn_loss:.4f}, Accuracy: {acc:.4f}')
-    tst_loss, acc = test(model, tst_loader, device, criterion)
-    print(f'Epoch {epoch+1}/{epochs} - Test Loss: {tst_loss:.4f}, Accuracy: {acc:.4f}')
+        trn_loss, acc = train(model, trn_loader, device, criterion, optimizer)
+        print(f'Epoch {epoch+1}/{epochs} - Training Loss: {trn_loss:.4f}, Accuracy: {acc:.4f}')
+        tst_loss, acc = test(model, tst_loader, device, criterion)
+        print(f'Epoch {epoch+1}/{epochs} - Test Loss: {tst_loss:.4f}, Accuracy: {acc:.4f}')
 
 if __name__ == '__main__':
     main()
