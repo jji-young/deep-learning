@@ -86,21 +86,23 @@ def main():
     """
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    # Create Dataset objects
-    train_dataset = dataset.MNIST('./data/train')
-    test_dataset = dataset.MNIST('./data/test')
-    # Create DataLoader objects
+
+    train_dataset = dataset.MNIST('../data/train')
+    test_dataset = dataset.MNIST('../data/test')
+ 
     trn_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
     tst_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
-    # Create model, optimizer, and cost function
+
     model = LeNet5().to(device)
     optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9)
     criterion = CrossEntropyLoss()
-    # Train and test the model
+    epochs = 30
+
+    for epoch in range(epochs):
     trn_loss, acc = train(model, trn_loader, device, criterion, optimizer)
-    print(f'Training Loss: {trn_loss:.4f}, Accuracy: {acc:.4f}')
+    print(f'Epoch {epoch+1}/{epochs} - Training Loss: {trn_loss:.4f}, Accuracy: {acc:.4f}')
     tst_loss, acc = test(model, tst_loader, device, criterion)
-    print(f'Test Loss: {tst_loss:.4f}, Accuracy: {acc:.4f}')
+    print(f'Epoch {epoch+1}/{epochs} - Test Loss: {tst_loss:.4f}, Accuracy: {acc:.4f}')
 
 if __name__ == '__main__':
     main()

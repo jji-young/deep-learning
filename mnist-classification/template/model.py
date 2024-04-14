@@ -38,7 +38,7 @@ class LeNet5(nn.Module):
         x = self.conv2(x)
         x = self.relu2(x)
         x = self.pool2(x)
-        x = x.view(x.size(0), -1) # convolution layer와 full connected layer 연결
+        x = x.view(x.size(0), -1)
         x = self.fc1(x)
         x = self.relu3(x)
         x = self.fc2(x)
@@ -58,11 +58,11 @@ class CustomMLP(nn.Module):
     def __init__(self):
 
         super(CustomMLP, self).__init__()
-        self.fc1 = nn.Linear(32 * 32, 58)
+        self.fc1 = nn.Linear(32 * 32, 60)
         self.relu1 = nn.ReLU()
-        self.fc2 = nn.Linear(58, 29)
+        self.fc2 = nn.Linear(60, 32)
         self.relu2 = nn.ReLU()
-        self.fc3 = nn.Linear(29, 10)  
+        self.fc3 = nn.Linear(32, 10)  
 
 
     def forward(self, img):
