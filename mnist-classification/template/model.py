@@ -12,18 +12,23 @@ class LeNet5(nn.Module):
 
     def __init__(self):
 
-        super(LeNet5, self).__init__()
-        self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1) # (5*5*1+1)*6 = 153
-        self.relu1 = nn.ReLU()
+        super().__init__()
+        self.conv1 = nn.Conv2d(in_channels=1, out_channels=6, kernel_size=5, stride=1)
+        self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1)
+
         self.pool1 = nn.MaxPool2d(kernel_size=2)
-        self.conv2 = nn.Conv2d(in_channels=6, out_channels=16, kernel_size=5, stride=1) # (5 * 5 * 6 + 1) * 16 = 2,416
-        self.relu2 = nn.ReLU()
         self.pool2 = nn.MaxPool2d(kernel_size=2)
-        self.fc1 = nn.Linear(16 * 5 * 5, 120) # (400 + 1) * 120 = 48,120
+
+        self.fc1 = nn.Linear(16 * 5 * 5, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 10)
+
+        self.relu1 = nn.ReLU()
+        self.relu2 = nn.ReLU()
         self.relu3 = nn.ReLU()
-        self.fc2 = nn.Linear(120, 84) # (120 + 1) * 84 = 10,164
         self.relu4 = nn.ReLU()
-        self.fc3 = nn.Linear(84, 10) # (84 + 1) * 10 = 850
+
+
 
     def forward(self, img):
 
