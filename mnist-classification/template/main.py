@@ -5,7 +5,7 @@ import torch
 from dataset import MNIST
 from model import LeNet5, CustomMLP
 from torch.optim import SGD
-from torch.nn import CrossEntropyLoss
+from torch.nn import CrossEntropyLoss, Dropout
 from torch.utils.data import DataLoader
 
 
@@ -93,9 +93,10 @@ def main():
     trn_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
     tst_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
-    model = LeNet5().to(device)
-    optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9)
+    model = CustomMLP().to(device)
+    optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.01)  # Add weight decay for L2 regularization
     criterion = CrossEntropyLoss()
+
     epochs = 30
 
     for epoch in range(epochs):
