@@ -38,7 +38,7 @@ class MNIST(Dataset):
         return len(self.image_file_lst)
 
     def __getitem__(self, idx): #주어진 인덱스에 해당하는 image, lable load + 변환적용
-        img_path = os.path.join(self.data_dir, self.image_files[idx])
+        img_path = os.path.join(self.data_dir, self.image_file_lst[idx])
         img = Image.open(img_path)
         img = self.transform(img)
         label = int(self.image_files[idx].split('_')[1].split('.')[0])

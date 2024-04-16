@@ -2,6 +2,7 @@
 import dataset
 import numpy as np
 import torch
+import matplotlib.pyplot as plt
 from dataset import MNIST
 from model import LeNet5, CustomMLP
 from torch.optim import SGD
@@ -93,17 +94,51 @@ def main():
     trn_loader = DataLoader(train_dataset, batch_size=64, shuffle=True)
     tst_loader = DataLoader(test_dataset, batch_size=64, shuffle=False)
 
-    model = CustomMLP().to(device)
-    optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.01)  # Add weight decay for L2 regularization
-    criterion = CrossEntropyLoss()
+    models = {'LeNet5': LeNet5(), 'CustomMLP': CustomMLP()}
+    for model_name, model in models.items():
+        model.to(device)
+        optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9)
+        criterion = CrossEntropyLoss()
 
-    epochs = 30
+        # Lists to store metrics for plotting
+        training_losses, training_accuracies = [], []
+        test_losses, test_accuracies = [], []
 
-    for epoch in range(epochs):
-        trn_loss, acc = train(model, trn_loader, device, criterion, optimizer)
-        print(f'Epoch {epoch+1}/{epochs} - Training Loss: {trn_loss:.4f}, Accuracy: {acc:.4f}')
-        tst_loss, acc = test(model, tst_loader, device, criterion)
-        print(f'Epoch {epoch+1}/{epochs} - Test Loss: {tst_loss:.4f}, Accuracy: {acc:.4f}')
+        epochs = 30
+        for epoch in range(epochs):
+            trn_loss, trn_acc = train(model, trn_loader, device, criterion, optimizer)
+            tst_loss, tst_acc = test(model, tst_loader, device, criterion)
+            
+            # Store metrics
+            training_losses.append(trn_loss)
+            training_accuracies.append(trn_acc)
+            test_losses.append(tst_loss)
+            test_accuracies.append(tst_acc)
+
+            print(f'{model_name} - Epoch {epoch+1}/{epochs} - Training Loss: {trn_loss:.4f}, Accuracy: {trn_acc:.4f}')
+            print(f'{model_name} - Epoch {epoch+1}/{epochs} - Test Loss: {tst_loss:.4f}, Accuracy: {tst_acc:.4f}')
+        
+        # Plotting the metrics
+        plt.figure(figsize=(10, 5))
+        
+        plt.subplot(1, 2, 1)
+        plt.plot(training_losses, label='Training Loss')
+        plt.plot(test_losses, label='Test Loss')
+        plt.title(f'Loss Over Time for {model_name}')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        plt.legend()
+
+        plt.subplot(1, 2, 2)
+        plt.plot(training_accuracies, label='Training Accuracy')
+        plt.plot(test_accuracies, label='Test Accuracy')
+        plt.title(f'Accuracy Over Time for {model_name}')
+        plt.xlabel('Epoch')
+        plt.ylabel('Accuracy')
+        plt.legend()
+        
+        plt.suptitle(f'Training and Testing Metrics for {model_name}')
+        plt.show()
 
 if __name__ == '__main__':
     main()
