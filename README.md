@@ -4,8 +4,8 @@
 
 **1. Describe the number of model parameters of LeNet-5 and your custom MLP and how to compute them.**
 
-    ###leNet-5와 CustomMLP의 파라미터 수 비교
-    #### LeNet-5
+### leNet-5와 CustomMLP의 파라미터 수 비교
+#### LeNet-5
 
     Convolution Layer 1: 1 x 6 x (5 x 5) + 6 = 156
 
@@ -18,7 +18,7 @@
     Fully Connected Layer 3: 84 x 10 + 10 = 850
 
 
-    #### CustomMLP
+#### CustomMLP
 
     Fully Connected Layer 1: (32 x 32) x 60 = 61,440
 
@@ -26,8 +26,8 @@
 
     Fully Connected Layer 3: 32 x 10 = 320
 
-    **CustomMLP의 총 파라미터 수는 다음과 같다.**
-        61,440 + 1,920 + 640 = 63,680
+**CustomMLP의 총 파라미터 수는 다음과 같다.**
+    61,440 + 1,920 + 640 = 63,680
 
 **2. Plot average loss and accuracy for training and testing.**
 **LeNet-5와 CustomNLP Plot 비교**
