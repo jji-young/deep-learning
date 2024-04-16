@@ -37,9 +37,9 @@
 ### **3. Compare the predictive performance of LeNet-5 and your custom MLP.**
 **LeNet-5와 CustomNLP ACC 비교(최고 성능 기준)**
 
-    ||LeNet-5|CustomMLP|
-    |--|--|--|
-    |ACC(%)|0.9831|0.9764|
+||LeNet-5|CustomMLP|
+|--|--|--|
+|ACC(%)|0.9831|0.9764|
 
 
 ### **4. Employ at least more than two regularization techniques to improve LeNet-5 model.**
@@ -48,8 +48,8 @@
 
 - **L2 regularization(Weight decay)**
 
-    ||LeNet-5(Reg)|LeNet-5(without Reg)|
-    |--|--|--|
-    |ACC(%)|0.9831|0.9932|
+||LeNet-5(Reg)|LeNet-5(without Reg)|
+|--|--|--|
+|ACC(%)|0.9831|0.9932|
 
-    정규화 후 오히려 성능이 아주 약간 감소하는 것을 확인할 수 있음. 
+정규화 후 오히려 성능이 아주 약간 감소하는 것을 확인할 수 있음. 
