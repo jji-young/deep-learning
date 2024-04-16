@@ -2,7 +2,7 @@
 ## 24-1학기 인공신경망과 딥러닝
 
 
-**1. Describe the number of model parameters of LeNet-5 and your custom MLP and how to compute them.**
+### **1. Describe the number of model parameters of LeNet-5 and your custom MLP and how to compute them.**
 
 ### leNet-5와 CustomMLP의 파라미터 수 비교
 #### LeNet-5
@@ -29,12 +29,12 @@
 **CustomMLP의 총 파라미터 수는 다음과 같다.**
     61,440 + 1,920 + 640 = 63,680
 
-**2. Plot average loss and accuracy for training and testing.**
+### **2. Plot average loss and accuracy for training and testing.**
 **LeNet-5와 CustomNLP Plot 비교**
 ![img1](mnist-classification/imgs/지영1.png)
 ![img1](mnist-classification/imgs/지영2.png)
 
-**3. Compare the predictive performance of LeNet-5 and your custom MLP.**
+### **3. Compare the predictive performance of LeNet-5 and your custom MLP.**
 **LeNet-5와 CustomNLP ACC 비교(최고 성능 기준)**
 
     ||LeNet-5|CustomMLP|
@@ -42,7 +42,7 @@
     |ACC(%)|0.9831|0.9764|
 
 
-**4. Employ at least more than two regularization techniques to improve LeNet-5 model.**
+### **4. Employ at least more than two regularization techniques to improve LeNet-5 model.**
 
 - **Dropout**
 
