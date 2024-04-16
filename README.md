@@ -26,8 +26,8 @@
 
     Fully Connected Layer 3: 32 x 10 = 320
 
-**CustomMLP의 총 파라미터 수는 다음과 같다.**  
-   61,440 + 1,920 + 640 = 63,680
+#### **CustomMLP의 총 파라미터 수는 다음과 같다.**  
+       61,440 + 1,920 + 640 = 63,680
 
 ### **2. Plot average loss and accuracy for training and testing.**
 **LeNet-5와 CustomNLP Plot 비교**
