@@ -97,7 +97,8 @@ def main():
     models = {'LeNet5': LeNet5(), 'CustomMLP': CustomMLP()}
     for model_name, model in models.items():
         model.to(device)
-        optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9)
+        #optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9)
+        optimizer = SGD(model.parameters(), lr=0.01, momentum=0.9, weight_decay=0.01)
         criterion = CrossEntropyLoss()
 
         # Lists to store metrics for plotting

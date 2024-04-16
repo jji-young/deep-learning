@@ -41,7 +41,7 @@ class MNIST(Dataset):
         img_path = os.path.join(self.data_dir, self.image_file_lst[idx])
         img = Image.open(img_path)
         img = self.transform(img)
-        label = int(self.image_files[idx].split('_')[1].split('.')[0])
+        label = int(self.image_file_lst[idx].split('_')[1].split('.')[0])
 
         return img, label
 

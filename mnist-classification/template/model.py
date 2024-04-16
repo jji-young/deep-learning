@@ -28,6 +28,9 @@ class LeNet5(nn.Module):
         self.relu3 = nn.ReLU()
         self.relu4 = nn.ReLU()
 
+        self.dropout1 = nn.Dropout(p=0.25)  # Dropout 
+        self.dropout2 = nn.Dropout(p=0.25)  
+        self.dropout3 = nn.Dropout(p=0.5)  
 
 
     def forward(self, img):
@@ -35,12 +38,19 @@ class LeNet5(nn.Module):
         x = self.conv1(img)
         x = self.relu1(x)
         x = self.pool1(x)
+        x = self.dropout1(x) 
+
         x = self.conv2(x)
         x = self.relu2(x)
         x = self.pool2(x)
+        x = self.dropout2(x)
+
+
         x = x.view(x.size(0), -1)
         x = self.fc1(x)
         x = self.relu3(x)
+        x = self.dropout3(x) 
+        
         x = self.fc2(x)
         x = self.relu4(x)
         output = self.fc3(x)
@@ -59,10 +69,8 @@ class CustomMLP(nn.Module):
 
         super(CustomMLP, self).__init__()
         self.fc1 = nn.Linear(32 * 32, 60)
-        self.dropout1 = Dropout(0.5)
         self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(60, 32)
-        self.dropout2 = Dropout(0.5) 
         self.relu2 = nn.ReLU()
         self.fc3 = nn.Linear(32, 10)  
 
@@ -71,10 +79,8 @@ class CustomMLP(nn.Module):
         x = img.view(img.size(0), -1)  
         
         x = self.fc1(x)
-        x = self.dropout1(x)
         x = self.relu1(x)
         x = self.fc2(x)
-        x = self.dropout2(x)
         x = self.relu2(x)
         output = self.fc3(x)
 
